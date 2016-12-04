@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: sc-web
+  cloud:
+    config:
+      uri: http://sc-config:8100

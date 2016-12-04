@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true" scan="true" scanPeriod="30 seconds">
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <property name="APP_NAME" value="sc-web" />
+    <timestamp key="BY_DAY" datePattern="yyyy-MM-dd" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+       <layout class="ch.qos.logback.classic.PatternLayout">
+          <Pattern>
+ 	    %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+          </Pattern>
+       </layout>
+    </appender>
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<file>${LOGS_DIR}/${APP_NAME}/${HOSTNAME}/log_${APP_NAME}_${BY_DAY}.log</file>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger - %msg%n</pattern>
+		</encoder>
+	</appender>
+    <root level="debug">
+      <appender-ref ref="STDOUT" />
+      <appender-ref ref="FILE" />
+    </root>
+</configuration>

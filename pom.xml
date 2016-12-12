@@ -8,7 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>isc-web</name>
+    <name>sc-web</name>
     <description>Web Application</description>
 
     <parent>
@@ -45,7 +45,8 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+            <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
+            <version>1.1.1.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -79,10 +80,18 @@
         <finalName>app</finalName>
         <resources>
             <resource>
-                <directory>src/main/resources/static</directory>
+                <directory>src/main/resources</directory>
                 <excludes>
-                    <exclude>node_modules/**/*</exclude>
+                    <exclude>static/node_modules/**/*</exclude>
                 </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>*</include>
+                    <include>static/node_modules/bootstrap/dist/**/*</include>
+                    <include>static/node_modules/jquery/dist/**/*</include>
+                </includes>
             </resource>
         </resources>
         <plugins>

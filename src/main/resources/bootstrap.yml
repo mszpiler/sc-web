@@ -3,4 +3,5 @@ spring:
     name: sc-web
   cloud:
     config:
-      uri: http://sc-config:8100
+      uri: http://sc-server-config:8100
+      fail-fast: true

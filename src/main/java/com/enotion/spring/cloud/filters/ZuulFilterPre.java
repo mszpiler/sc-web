@@ -7,9 +7,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * Example of zuul pre filter
- */
 public class ZuulFilterPre extends ZuulFilter {
 
     private static final Logger logger = LoggerFactory.getLogger(ZuulFilterPre.class);

@@ -1,2 +1,3 @@
 # sc-web
 
+Web application

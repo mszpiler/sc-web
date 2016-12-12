@@ -39773,13 +39773,25 @@ var LoginService = (function () {
         this.http = http;
     }
     LoginService.prototype.login = function (email, password) {
-        return this.makeRequest("login/" + email);
+        return this.makeRequest("accounts/login", email, password);
     };
-    LoginService.prototype.makeRequest = function (path) {
+    LoginService.prototype.makeRequest = function (path, email, password) {
         var params = new http_1.URLSearchParams();
         var url = "/" + path;
-        return this.http.get(url, { search: params })
-            .map(function (res) { return res.json(); });
+        return this.post(url, email, password).subscribe(function (result) {
+            console.log(result);
+        });
+    };
+    LoginService.prototype.createAuthorizationHeader = function (headers, email, password) {
+        headers.append('Authorization', 'Basic ' +
+            btoa('' + email + ':' + password + ''));
+    };
+    LoginService.prototype.post = function (url, email, password) {
+        var headers = new http_1.Headers();
+        this.createAuthorizationHeader(headers, email, password);
+        return this.http.post(url, "loginMe", {
+            headers: headers
+        });
     };
     LoginService = __decorate([
         core_1.Injectable(), 
@@ -52320,11 +52332,7 @@ var LoginComponent = (function () {
         });
     };
     LoginComponent.prototype.onLogin = function () {
-        this.loginService.login(this.email, this.password)
-            .subscribe(function (_a) {
-            var name = _a.name;
-            console.log("Executed..");
-        });
+        this.loginService.login(this.email, this.password);
     };
     LoginComponent.prototype.submitForm = function () {
         console.log(this.loginForm);

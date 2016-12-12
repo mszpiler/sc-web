@@ -22,10 +22,7 @@ export class LoginComponent  implements OnInit {
     }
 
     onLogin() {
-        this.loginService.login(this.email, this.password)
-            .subscribe(({name}) => {
-                console.log("Executed..");
-            });
+        this.loginService.login(this.email, this.password);
     }
 
     submitForm(): void {
